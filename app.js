@@ -18,7 +18,6 @@ const buttonsdelete = document.querySelector(".delete")
 const egalebuttons = document.querySelector(".btnegale")
 const resetbuttons = document.querySelector(".Reset")
 const laclassinput = document.querySelector(".inputText")
-console.log(divtheme3);
 
 
 // const IDtheme2 = document.getElementById("theme2");
@@ -45,7 +44,6 @@ console.log(divtheme3);
 
 idtheme1.addEventListener('click',function (event) {
    if(event){
-
 
 
     // ================= buttons et input theme2 ================================
@@ -247,16 +245,15 @@ idtheme3.addEventListener('click',function (event) {
     laclassinput.classList.remove("inputText1")
 });
 const linput = document.getElementById("input")
-console.log(linput);
+
 let buttons = document.querySelectorAll("button")
-let string = " ";
+let string = "";
 
 buttons.forEach(element =>{
   element.addEventListener('click', function (event) {
     let bouttonsText = event;
-    console.log(bouttonsText);
     if (event.target.innerText === "=") {
-      linput.value = string;
+       linput.value = string;
     }
     else if (event.target.innerText === 'DEL') {
       string = string.substring(0,string.length -1)
