@@ -20,28 +20,6 @@ const resetbuttons = document.querySelector(".Reset")
 const laclassinput = document.querySelector(".inputText")
 
 
-// const IDtheme2 = document.getElementById("theme2");
-// const idtheme1 = document.getElementById("theme1");
-// const inputext = document.querySelector(".inputText");
-// const classdutextcaculetor = document.querySelector(".texte");
-// const classspan = document.querySelector(".span1");
-// const classspan2 = document.querySelector(".span2");
-// const classspan3 = document.querySelector(".span3");
-// const span = document.querySelector(".span");
-// const divnumber = document.querySelector(".Divnumber");
-// const lesboutons = document.querySelectorAll(".btn1");
-// const input = document.getElementById("input");
-// const divdesletheme = document.querySelector(".Letheme");
-// const idtheme3 = document.getElementById("theme3");
-// const btndelete = document.querySelector(".delete");
-// const btnreset = document.querySelector(".Reset");
-// const btnegal = document.querySelector(".btnegale");
-// const letext = document.querySelector(".texte")
-//  const classtheme2 = document.querySelector(".Theme2")
-
-
-
-
 idtheme1.addEventListener('click',function (event) {
    if(event){
 
@@ -119,15 +97,8 @@ idtheme1.addEventListener('click',function (event) {
 
 
 
-
-
-
-
 idtheme2.addEventListener('click',function (event) {
     if (event) {
-
-
-
          // ================= buttons et input theme2 ================================
         input.classList.add("colorinput2")
         divdesbuttons.classList.add("colorpourladivdesbuttons")    
@@ -145,14 +116,11 @@ idtheme2.addEventListener('click',function (event) {
       // ================= buttons et input theme2 ================================
 
 
-
-
       // ======================== pour les body ============================
         bady.classList.remove("bodynext3")
         bady.classList.add("bodynext2")
         bady.classList.add("bodynext")
         // ================== pour les boby ===============================
-
 
 
           // ================== pour les theme =========================
@@ -175,9 +143,6 @@ idtheme2.addEventListener('click',function (event) {
     laclassinput.classList.add("inputText2")
     laclassinput.classList.remove("inputText1")
 });
-
-
-
 
 
 
@@ -244,31 +209,184 @@ idtheme3.addEventListener('click',function (event) {
     laclassinput.classList.remove("inputText2")
     laclassinput.classList.remove("inputText1")
 });
-const linput = document.getElementById("input")
 
-let buttons = document.querySelectorAll("button")
-let string = "";
 
-buttons.forEach(element =>{
-  element.addEventListener('click', function (event) {
-    let bouttonsText = event;
-    if (event.target.innerText === "=") {
-       linput.value = string;
-    }
-    else if (event.target.innerText === 'DEL') {
-      string = string.substring(0,string.length -1)
-      linput.value = string;
-    }
-    else if (event.target.innerText === "RESET") {
-      string = ''
-      linput.value = string;
-    }
-    else if (event.target.innerText === '.') {
-      linput.value = string;
-    }
-    else{
-      string += event.target.innerText
-      linput.value = string;
-    }
-  })
+let inputResult = document.getElementById("input");
+let btn_number = document.querySelectorAll('.btn-number');
+let btn_operator = document.querySelectorAll('.btn-operation');
+let clear = document.getElementById('reset');
+let backspace = document.getElementById('delete');
+let virgule = document.querySelector(".point");
+let equal = document.querySelector("#egale");
+
+
+let screenText = ""
+let screenContent;
+let num1 = ""
+let num2 = ""
+let resultFinal = 0;
+let operation = ""
+let operationCheck =""
+let isInIfisInIfCount = 0;
+let opdDive = ""
+let num2Chek = ""
+let checkedText2 = false;
+let checkDot = false; 
+
+btn_number.forEach((element)=>{
+element.addEventListener('click',function (event) {
+
+  let buttonText = event.target.textContent;
+  if(!operation){     
+    num1 += buttonText;
+    inputResult.innerText = num1
+    //temporary memory 1
+    screenNum = num1;
+  }else{
+    
+     num2 += event.target.textContent;
+     inputResult.innerText = num2
+     //temporary memory 2
+    screenNum = num2;
+}
 })
+});
+
+
+
+
+
+
+btn_operator.forEach((element) =>{
+    element.addEventListener('click', (event) =>{
+      if(operation && num2){
+
+          switch(operation) {
+              case "+":
+                  console.log(resultFinal);
+                  resultFinal = resultFinal
+                                                                                                                                          
+                  ? resultFinal + Number(num2)
+                  : Number(num1) + Number(num2)
+                  num1 ="";
+                  num2 ="";
+                   inputResult.textContent = resultFinal; 
+                  console.log(isInIfisInIfCount ); 
+                  break;
+              case "-":
+                  resultFinal = resultFinal 
+                  ?resultFinal - Number(num2)
+                  :Number(num1) - Number(num2)
+                  num1 = "";
+                  num2 = ""
+                  inputResult.textContent = resultFinal
+                  break;
+              case "x":
+                  resultFinal = resultFinal 
+                  ? resultFinal * Number(num2)
+                  : Number(num1) * Number(num2)
+                  num1 = "";
+                  num2 = ""
+                  inputResult.textContent = resultFinal
+
+                  break;
+              case "/":
+                  checkedText2 = true;
+                  num2Chek = num2;
+                   opdDive = operation;
+                  resultFinal = resultFinal 
+                  ? resultFinal / Number(num2)
+                  : Number(num1) / Number(num2)
+                  num1 = "";
+                  num2 = ""
+                  inputResult.textContent = resultFinal
+                  break;
+              case "=":
+              console.log("yes");
+
+                  if(operation === "+"){
+                      resultFinal = resultFinal 
+                      ? resultFinal + Number(num2)
+                      : Number(num1) + Number(num2) 
+                  }else if(operation === "-"){
+                      resultFinal = resultFinal 
+                      ? resultFinal - Number(num2)
+                      : Number(num1) - Number(num2) 
+                  }else if(operation === "/"){
+                      console.log("divise /");
+                      resultFinal = resultFinal 
+                      ? resultFinal / Number(num2)
+                      : Number(num1) / Number(num2) 
+                  }else if(operation === "x"){
+                      resultFinal = resultFinal 
+                      ? resultFinal * Number(num2)
+                      : Number(num1) * Number(num2) 
+                  }
+                  num1 = "";
+                  num2 = "" 
+                  inputResult.textContent = resultFinal
+                  break;
+          }
+      }
+      operation = event.target.textContent;
+      console.log(operation);
+     
+  })
+
+});
+equal.addEventListener("click", (e) =>{
+  if((num2Chek === "0" && opdDive === "/" && checkedText2) ){
+      checkedText2 = false;
+      console.log("soso");
+      inputResult.textContent = "Error";
+      num1 = ""
+      num2 = ""
+      screenText = ""
+      operation = ""
+      resultFinal = 0;
+  }
+
+})
+//change value
+clear.addEventListener('click', ()=>{
+  num1 = ""
+  num2 = ""
+  screenText = ""
+  operation = ""
+  resultFinal = 0;
+  inputResult.textContent = 0;
+})
+backspace.addEventListener('click', () =>{
+  checkDot = false;
+   if(num1 !=="" && num2 === ""){
+      
+      num1 = num1.toString().slice(0,-1)
+      inputResult.textContent = inputResult.textContent.slice(0,-1);
+      console.log("num1 " + num1);
+  }else if(num2 !== ""){
+      num2 = num2.toString().slice(0,-1)
+      inputResult.textContent = inputResult.textContent.slice(0,-1);
+  }
+  
+})
+
+
+// virgule.addEventListener("click", (e) =>{
+//   if(num1 === "" && !checkDot){
+//       checkDot = true;
+//       num1 = "0."
+//       inputResult.textContent = num1
+//   }else 
+//   if(!operation && num1 !== "" && !num1.includes(".") && !checkDot ){
+//       checkDot = true;
+//       num1 = num1 + "."
+//       inputResult.textContent=num1;
+//   }else if( num2 === ""  && operation){
+//       isInIfisInIfCount = 0;
+//       num2 = "0."
+//       inputResult.textContent = num2;
+//   }else if(e.target.textContent === "." && num2 !== "" && !num2.includes(".")){
+//       num2 = num2 + "."
+//       inputResult.textContent = num2;
+//   }
+// });

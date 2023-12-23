@@ -5,6 +5,10 @@
     height: 100vh;
     background-color: hsl(222, 26%, 31%);
 } */
+body{
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
 .body1{
     background-color: hsl(222, 26%, 31%); 
     justify-content: center;
@@ -76,6 +80,7 @@
 .container{
     height: 50vh;
     width: 300px;
+   
 }
 .Divspan{
     justify-content: end;
@@ -119,11 +124,12 @@
     bottom: 20px;
 }
 .inputText{
-    width: 293px;
-    height: 69px;
+    width: 253px;
+    height: 39px;
     background-color: #182033;
     border-radius: 10px;
     border: none;
+    padding: 20px;
 }
 /* .Premiereligne{
 
@@ -306,3 +312,4 @@ a{
 }
 
 /*======================================= pour les buttons ============================================== */
+
