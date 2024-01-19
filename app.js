@@ -237,14 +237,15 @@ btn_number.forEach((element)=>{
 element.addEventListener('click',function (event) {
 
   let buttonText = event.target.textContent;
+ 
   if(!operation){     
     num1 += buttonText;
     inputResult.innerText = num1
     //temporary memory 1
     screenNum = num1;
   }else{
-    
      num2 += event.target.textContent;
+     console.log(num2);
      inputResult.innerText = num2
      //temporary memory 2
     screenNum = num2;
@@ -337,7 +338,6 @@ btn_operator.forEach((element) =>{
 equal.addEventListener("click", (e) =>{
   if((num2Chek === "0" && opdDive === "/" && checkedText2) ){
       checkedText2 = false;
-      console.log("soso");
       inputResult.textContent = "Error";
       num1 = ""
       num2 = ""
@@ -368,25 +368,8 @@ backspace.addEventListener('click', () =>{
       inputResult.textContent = inputResult.textContent.slice(0,-1);
   }
   
-})
+});
 
-
-// virgule.addEventListener("click", (e) =>{
-//   if(num1 === "" && !checkDot){
-//       checkDot = true;
-//       num1 = "0."
-//       inputResult.textContent = num1
-//   }else 
-//   if(!operation && num1 !== "" && !num1.includes(".") && !checkDot ){
-//       checkDot = true;
-//       num1 = num1 + "."
-//       inputResult.textContent=num1;
-//   }else if( num2 === ""  && operation){
-//       isInIfisInIfCount = 0;
-//       num2 = "0."
-//       inputResult.textContent = num2;
-//   }else if(e.target.textContent === "." && num2 !== "" && !num2.includes(".")){
-//       num2 = num2 + "."
-//       inputResult.textContent = num2;
-//   }
-// });
+backspace.addEventListener('click',function () {
+   inputResult.value.slice(0, -1);
+});
