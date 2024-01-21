@@ -216,7 +216,6 @@ let btn_number = document.querySelectorAll('.btn-number');
 let btn_operator = document.querySelectorAll('.btn-operation');
 let clear = document.getElementById('reset');
 let backspace = document.getElementById('delete');
-let virgule = document.querySelector(".point");
 let equal = document.querySelector("#egale");
 
 
@@ -373,3 +372,28 @@ backspace.addEventListener('click', () =>{
 backspace.addEventListener('click',function () {
    inputResult.value.slice(0, -1);
 });
+
+
+const thePoint = document.getElementById("point");
+
+thePoint.addEventListener("click", (e) =>{
+   
+  if(num1 === "" && !checkDot){
+      checkDot = true;
+      num1 = "0."
+      inputResult.textContent = num1
+  }else 
+  if(!operation && num1 !== "" && !num1.includes(".") && !checkDot ){
+      checkDot = true;
+     
+      num1 = num1 + "."
+      inputResult.textContent=num1;
+  }else if( num2 === ""  && operation){
+      isInIfisInIfCount = 0;
+      num2 = "0."
+      inputResult.textContent = num2;
+  }else if(e.target.textContent === "." && num2 !== "" && !num2.includes(".")){
+      num2 = num2 + "."
+      inputResult.textContent = num2;
+  }
+})
